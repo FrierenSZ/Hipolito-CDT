@@ -32,6 +32,7 @@
    'PYMODULE'),
   ('pathlib',
    'C:\\Users\\Aluno\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\__init__.py',
+   'PYMODULE'),
   ('pathlib._local',
    'C:\\Users\\Aluno\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_local.py',
    'PYMODULE'),
