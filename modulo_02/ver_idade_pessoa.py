@@ -21,16 +21,14 @@ print(f'Olá {nome}, Você tem {idade} anos de idade ')
 
 
 if idade >= 18:
-    print("Aparentemente você é maior de idade ")
+    print("Aparentemente você é maior de idade 😎 ta safe")
 else:
-    print("Aparentemente você é menor de idade ")
+    print("Aparentemente você é menor de idade 😅 ")
 
 
 date.today
 nascimento = (ano_atual - idade)
 print(f'Você nasceu no ano de {nascimento} ') 
-
-
 
 altura_pessoa = str(input("Qual sua altura? 'Exemplo: 1.70' "))
 
