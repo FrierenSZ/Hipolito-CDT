@@ -1,11 +1,15 @@
 '''
 Pedir para o usuário escrever o nome e idade
-
+armazenar em variaveis
+fazer mais perguntas
+armazenar em variaveis
+responder perguntas
 '''
 
 print("\n---------------------------")
 print("Bem Vindo a tela!")
 print("\n---------------------------")
+
 
 nome = input('Qual seu nome? ')
 idade = int(input("Qual sua idade? "))
