@@ -26,6 +26,6 @@ print(f'Você nasceu no ano de {nascimento} ')
 
 
 
-altura_pessoa = str(input("Qual sua altura? "))
+altura_pessoa = float(input("Qual sua altura? "))
 print('Exemplo: 1.70')
 print(f'Você tem {altura_pessoa} de altura! ')
