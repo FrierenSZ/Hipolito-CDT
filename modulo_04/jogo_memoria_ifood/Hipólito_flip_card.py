@@ -12,7 +12,7 @@ import sys
 
 def resolver_caminho_recurso(caminho_relativo):
     try:
-        base_path = sys.MEIPASS
+        base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, caminho_relativo)
@@ -22,9 +22,9 @@ LARGURA, ALTURA = 800,600
 COR_FUNDO = (20, 20, 20)
 COR_TEXTO = (255, 255, 255)
 
-caminho_imagens = "imagens"
+caminho_imagens = os.path.join(os.path.dirname(__file__), "imagens")
 NOMES_IMAGENS = [
-    "1.png", "2.png", "3.png", "4.png", "5.png", "6.png"
+    "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"
 ]
 VERSO_FLIP = "verso_flip.png"
 
@@ -39,7 +39,7 @@ RELOGIO = pygame.time.Clock()
 caminho_verso = resolver_caminho_recurso(os.path.join(caminho_imagens, VERSO_FLIP))
 try:
     VERSO_CARTA_IMG = pygame.image.load(caminho_verso)
-    Verso_CARTA_IMG = pygame.transFORM.SCALE(VERSO_CARTA_IMG, TAMANHO_CARTA)
+    VERSO_CARTA_IMG = pygame.transform.scale(VERSO_CARTA_IMG, TAMANHO_CARTA)
 except pygame.error as e:
     print(f"Erro: Não foi possível carregar o verso da carta {e}")
     exit()
@@ -54,26 +54,26 @@ for nome_arquivo in NOMES_IMAGENS:
     except pygame.error as e:
         print(f"Aviso: Imagem {nome_arquivo} não foi carregada, verifique se ela existe {e}")
 
-    todas_imagens_com_id = dados_imagem * 2
-    random.shuffle(todas_imagens_com_id)
+todas_imagens_com_id = dados_imagem * 2
+random.shuffle(todas_imagens_com_id)
 
-    class Carta:
-        def __init__(self, imagem_e_id, x, y):
-            self.imagem_frente = imagem_e_id[0]
-            self.id_par = imagem_e_id[1]
-            self.imagem_verso = Verso_CARTA_IMG
-            self.rect = pygame.Rect(x, y, TAMANHO_CARTA[0], TAMANHO_CARTA[1])
-            self.virada = False
-            self.encontrada = False
+class Carta:
+    def __init__(self, imagem_e_id, x, y):
+        self.imagem_frente = imagem_e_id[0]
+        self.id_par = imagem_e_id[1]
+        self.imagem_verso = VERSO_CARTA_IMG
+        self.rect = pygame.Rect(x, y, TAMANHO_CARTA[0], TAMANHO_CARTA[1])
+        self.virada = False
+        self.encontrada = False
 
-        def desenhar(self, janela):
-            if self.virada:
-                janela.blit(self.imagem_frente, self.rect)
-            elif not self.encontrada:
-                janela.blit(self.imagem_verso, self.rect)
+    def desenhar(self, janela):
+        if self.virada:
+            janela.blit(self.imagem_frente, self.rect)
+        elif not self.encontrada:
+            janela.blit(self.imagem_verso, self.rect)
 
 
-        def criar_cartas():
+def criar_cartas():
             cartas = []
 
             cartas_por_linha = 4
@@ -184,8 +184,8 @@ def game_loop():
         for carta in cartas:
             carta.desenhar(JANELA) 
         
-        # 2. Desenhar o Placar (Contador na parte de cima)
-        pygame.draw.rect(JANELA, (10, 10, 10), (0, 0, LARGURA, ALTURA_PLACAR)) # Retângulo de fundo
+
+        pygame.draw.rect(JANELA, (10, 10, 10), (0, 0, LARGURA, ALTURA_PLACAR)) 
         
         placar_x = LARGURA // 2
         placar_y = ALTURA_PLACAR // 2
